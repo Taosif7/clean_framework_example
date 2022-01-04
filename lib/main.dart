@@ -1,6 +1,6 @@
 import 'package:clean_framework/clean_framework.dart';
 import 'package:clean_framework_example/features/counter/presentation/counter_ui.dart';
-import 'package:clean_framework_example/features/providers_loader.dart';
+import 'package:clean_framework_example/providers_loader.dart';
 import 'package:flutter/material.dart';
 
 void main() {

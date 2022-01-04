@@ -74,11 +74,22 @@ class CounterUI extends UI<CounterViewModel> {
               ),
             ],
           ),
-          TextButton(
-            onPressed: () {
-              viewModel.onReset();
-            },
-            child: const Text("Reset"),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TextButton(
+                onPressed: () {
+                  viewModel.onSave();
+                },
+                child: const Text("Save"),
+              ),
+              TextButton(
+                onPressed: () {
+                  viewModel.onReset();
+                },
+                child: const Text("Reset"),
+              ),
+            ],
           ),
         ],
       ),

@@ -1,6 +1,7 @@
 import 'package:clean_framework/clean_framework_providers.dart';
 import 'package:clean_framework_example/features/counter/domain/counter_entity.dart';
 import 'package:clean_framework_example/features/counter/domain/counter_inputs.dart';
+import 'package:clean_framework_example/features/counter/domain/counter_outputs.dart';
 import 'package:clean_framework_example/features/counter/domain/counter_ui_output.dart';
 
 class CounterUseCase extends UseCase<CounterEntity> {
@@ -19,9 +20,31 @@ class CounterUseCase extends UseCase<CounterEntity> {
             CounterDecreaseCountInput: (CounterDecreaseCountInput i, CounterEntity e) {
               return CounterEntity(count: (e.count - i.count));
             },
-            CounterRestCountInput: (CounterRestCountInput i, CounterEntity e) {
+            CounterResetCountInput: (CounterResetCountInput i, CounterEntity e) {
               return CounterEntity(count: 0);
             }
           },
-        );
+        ) {
+    onCreate();
+  }
+
+  void saveCount() async {
+    await request(
+      CounterSaveCountOutput(count: entity.count),
+      onSuccess: (CounterSaveCountInput i) {
+        return entity;
+      },
+      onFailure: (_) => entity,
+    );
+  }
+
+  void onCreate() async {
+    await request(
+      CounterRetrieveCountOutput(),
+      onSuccess: (CounterRetrieveCountInput i) {
+        return CounterEntity(count: i.count);
+      },
+      onFailure: (_) => entity,
+    );
+  }
 }

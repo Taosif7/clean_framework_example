@@ -7,12 +7,14 @@ class CounterViewModel extends ViewModel {
   final ValueChanged<int> onIncrement;
   final ValueChanged<int> onDecrement;
   final Function() onReset;
+  final Function() onSave;
 
   CounterViewModel({
     required this.displayCount,
     required this.onIncrement,
     required this.onDecrement,
     required this.onReset,
+    required this.onSave,
   });
 
   @override

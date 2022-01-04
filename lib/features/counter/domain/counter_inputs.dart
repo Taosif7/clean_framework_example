@@ -22,9 +22,17 @@ class CounterDecreaseCountInput extends Input {
   }
 }
 
-class CounterRestCountInput extends Input {
+class CounterResetCountInput extends Input {
   @override
   String toString() {
-    return 'CounterRestCountInput{}';
+    return 'CounterResetCountInput{}';
   }
+}
+
+class CounterSaveCountInput extends SuccessInput {}
+
+class CounterRetrieveCountInput extends SuccessInput {
+  final int count;
+
+  CounterRetrieveCountInput({required this.count});
 }

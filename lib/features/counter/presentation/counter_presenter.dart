@@ -21,7 +21,8 @@ class CounterPresenter extends Presenter<CounterViewModel, CounterUIOutput, Coun
       displayCount: output.count.toString(),
       onIncrement: (count) => _onIncrementCount(useCase, count),
       onDecrement: (count) => _onDecrementCount(useCase, count),
-      onReset: () => _onResentCount(useCase),
+      onReset: () => _onResetCount(useCase),
+      onSave: () => _onSaveCount(useCase),
     );
   }
 
@@ -33,7 +34,16 @@ class CounterPresenter extends Presenter<CounterViewModel, CounterUIOutput, Coun
     useCase.setInput(CounterDecreaseCountInput(count: count));
   }
 
-  _onResentCount(UseCase useCase) {
-    useCase.setInput(CounterRestCountInput());
+  _onResetCount(UseCase useCase) {
+    useCase.setInput(CounterResetCountInput());
+  }
+
+  _onSaveCount(CounterUseCase useCase) {
+    useCase.saveCount();
+  }
+
+  @override
+  void onLayoutReady(BuildContext context, CounterUseCase useCase) {
+    useCase.onCreate();
   }
 }
